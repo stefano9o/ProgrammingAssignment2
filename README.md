@@ -1,4 +1,52 @@
-### Introduction
+# Programming Assignment 2
+## Step by step
+
+Import the R script
+```R
+> source("cachematrix.R")
+```
+create the matrix 
+```R
+> m <- matrix(runif(9),3,3)
+> m
+          [,1]        [,2]      [,3]
+[1,] 0.1333129 0.007871525 0.4449713
+[2,] 0.8957689 0.065143372 0.9741364
+[3,] 0.2544803 0.915150502 0.3549224
+```
+create our special matrix object
+```R
+> m_obj <- makeCacheMatrix(m)
+```
+calculate the inverse matrix
+```R
+> m_inv <- cacheSolve(m_obj)
+> m_inv
+           [,1]       [,2]         [,3]
+[1,] -3.6019655  1.6775447 -0.088431309
+[2,] -0.2904845 -0.2734395  1.114679308
+[3,]  3.3316193 -0.4977532  0.006775278
+```
+retrieve inverse from the cache
+```R
+> m_inv <- cacheSolve(m_obj)
+getting cached data
+> m_inv
+           [,1]       [,2]         [,3]
+[1,] -3.6019655  1.6775447 -0.088431309
+[2,] -0.2904845 -0.2734395  1.114679308
+[3,]  3.3316193 -0.4977532  0.006775278
+```
+check the result
+```R
+> m %*% m_inv
+     [,1]         [,2]         [,3]
+[1,]    1 8.326673e-17 0.000000e+00
+[2,]    0 1.000000e+00 4.336809e-18
+[3,]    0 8.326673e-17 1.000000e+00
+```
+
+## Appendix: Text of Assignment: 
 
 This second programming assignment will require you to write an R
 function that is able to cache potentially time-consuming computations.
@@ -85,21 +133,3 @@ function in R. For example, if `X` is a square invertible matrix, then
 
 For this assignment, assume that the matrix supplied is always
 invertible.
-
-In order to complete this assignment, you must do the following:
-
-1.  Fork the GitHub repository containing the stub R files at
-    [https://github.com/rdpeng/ProgrammingAssignment2](https://github.com/rdpeng/ProgrammingAssignment2)
-    to create a copy under your own account.
-2.  Clone your forked GitHub repository to your computer so that you can
-    edit the files locally on your own machine.
-3.  Edit the R file contained in the git repository and place your
-    solution in that file (please do not rename the file).
-4.  Commit your completed R file into YOUR git repository and push your
-    git branch to the GitHub repository under your account.
-5.  Submit to Coursera the URL to your GitHub repository that contains
-    the completed R code for the assignment.
-
-### Grading
-
-This assignment will be graded via peer assessment.
